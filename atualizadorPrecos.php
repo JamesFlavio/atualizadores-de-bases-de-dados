@@ -67,17 +67,19 @@ if (mysqli_num_rows($resultMysql) > 0) {
 
 
 				# AQUI COMEÇA A CONEXAO DO POSSTGRE PARA PEGAR O VALOR ATUALIZADO		
-				$hostPostgre = "emporioautomacao.no-ip.info";  //Endereço ip do banco de dados
+				$hostPostgreLocal = "192.168.1.200";  //Endereço ip do banco de dados
 
+				$hostPostgreExterno = "emporioautomacao.no-ip.info";  //Endereço ip do banco de dados
+			
 				$portPostgre = "5432";  //Porta de conexão com o banco de dados
 
 				$bdnamePostgre = "control";  //Nome do banco de dados
-
+			
 				$userPostgre = "usuario"; //Usuário de acesso ao banco de dados
 
 				$passwordPostgre = "123123"; //Senha de acesso ao banco de dados
 
-				$conexaoPostgre = pg_connect("host=$hostPostgre port=$portPostgre dbname=$bdnamePostgre user=postgres");
+				$conexaoPostgre = pg_connect("host=$hostPostgreLocal port=$portPostgre dbname=$bdnamePostgre user=postgres");
 
 				$resultPostgre = pg_query($conexaoPostgre, "SELECT * FROM produtos WHERE codigo=".$rowMysql["reference"].";");
 
